@@ -1,42 +1,139 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200;6..12,300;6..12,400&display=swap');
+
+:root {
+  --title-color: #0a1d37;
+  --hero-bg: #d6e5fb;
+  --heading-fontSize: 2rem;
+  --small-text-color: #999;
+  --heading-text-color: #0a1d37;
+  --primary-bg-color: #FEC7D7;
+  --secondary-bg-color: #A786DF;
+  --terttiary-bg-color: #D9D4E7;
+
+  --biggest-font-size: 4rem;
+  --h1-font-size: 2.25rem;
+  --h2-font-size: 1.5rem;
+  --h3-font-size: 1.25rem;
+  --normal-font-size: 1rem;
+  --small-font-size: .875rem;
+  --smaller-font-size: .813rem;
+
+  /*========== Font weight ==========*/
+  --font-medium: 500;
+  --font-bold: 600;
+
+  /*========== Margenes Bottom ==========*/
+  --mb-0-5: .5rem;
+  --mb-0-75: .75rem;
+  --mb-1: 1rem;
+  --mb-1-5: 1.5rem;
+  --mb-2: 2rem;
+  --mb-2-5: 2.5rem;
+  --mb-3: 3rem;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/* reset browser default */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito Sans', sans-serif;
+  background-color: var(--secondary-bg-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  padding: 0;
+  margin: 0;
+  font-weight: 800;
+}
+
+p {
+  color: var(--small-text-color);
+  font-size: 1rem;
+}
+
+h1,
+h2 {
+  font-size: var(--heading-fontSize);
+}
+
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+img {
+  width: 100%;
+}
+
+section {
+  padding: 60px 0px;
+}
+
+button {
+  border: none;
+  background-color: #0E172C;
+  color: white;
+  border-radius: 98px;
+  padding: 10px;
+  width: 150px;
+}
+
+button:hover {
+  background-color: #1A2D50; /* Cambia el color de fondo al pasar el mouse sobre el botón */
+  cursor: pointer; /* Cambia el cursor a una mano al pasar el mouse sobre el botón */
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.section {
+  padding: 7rem 0 2rem;
+}
+
+.section__title,
+.breadcrumb__title {
+  font-size: var(--h1-font-size);
+}
+
+.section__title,
+.breadcrumb__subtitle {
+  margin-bottom: var(--mb-3);
+}
+
+.section__title,
+.breadcrumb__title,
+.breadcrumb__subtitle {
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.breadcrumb__subtitle span {
+  color: var(--first-color);
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/*=============== LAYOUT ===============*/
+.container {
+  max-width: 968px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.grid {
+  display: grid;
 }
