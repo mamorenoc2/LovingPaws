@@ -17,7 +17,6 @@ const Header = () => {
       setIsAuthenticated(!!user);
     });
 
-    // Limpiar la suscripción al desmontar
     return () => unsubscribe();
   }, []);
 
@@ -36,7 +35,7 @@ const Header = () => {
           <div className="icon-container">
             <FontAwesomeIcon icon={faEnvelope} />
             <span className='desk-header icon-m'>
-              {'Pets'}
+              {'Mascotas'}
             </span>
           </div>
         </NavLink>
@@ -44,7 +43,7 @@ const Header = () => {
           <div className="icon-container">
             <FontAwesomeIcon icon={faHeart} />
             <span className='desk-header icon-m'>
-              {'Favorites'}
+              {'Favoritos'}
             </span>
           </div>
         </NavLink>
@@ -52,7 +51,7 @@ const Header = () => {
           <div className="icon-container">
             <FontAwesomeIcon icon={faUser} />          
             <span className='desk-header icon-m'>
-              {'User'}
+              {'Usuario'}
             </span>
           </div>
         </NavLink>

@@ -1,6 +1,7 @@
 import React from 'react'
-import { signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../../firebase/firebase'
+import { signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, updateProfile  } from 'firebase/auth';
+import { auth, db } from '../../../firebase/firebase'
+import { addDoc, collection } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGoogle, } from '@fortawesome/free-brands-svg-icons'
@@ -12,23 +13,37 @@ const Register = () => {
     try {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
-      console.log('Inicio de sesión con Google exitoso');
-
       navigate('/home');
     } catch (error) {
       console.error('Error al  registrarse con Google', error.message);
     }
   };
 
-  const handleEmailRegister = (e) => {
+  const handleEmailRegister = async (e) => {
     try {
       e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    createUserWithEmailAndPassword(auth, email, password).then(data=>{
-      console.log(data, 'auth');
-      navigate('/home');
-    });
+      const email = e.target.email.value;
+      const password = e.target.password.value;
+      const name = e.target.name.value;
+      const direccion = e.target.direccion.value;
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      if (user) {
+
+        await updateProfile(user, {
+          displayName: e.target.name.value,
+        });
+        const userDocRef = await addDoc(collection(db, 'dueños'), {
+          uid: user.uid,
+          name:name,
+          direccion: direccion,
+          correo:email,
+        });
+        navigate('/home');
+      } else {
+        console.error('Error al obtener información del usuario después del registro');
+      }
     } catch (error) {
       console.error('Error al registrarse', error.message);
     }
@@ -38,9 +53,10 @@ const Register = () => {
     return (
         <form className="login-form-page" onSubmit={(e) => handleEmailRegister(e)}>
           <h1 className='title'>Registrate a Loving paws</h1>
-          {/* <input type="text" placeholder="Nombre"  name='name'/> */}
+          <input type="text" placeholder="Nombre"  name='name'/>
           <input type="email" placeholder="Correo" name='email' />
           <input type="password" placeholder="Contraseña" name='password' />
+          <input type="text" placeholder="Direccion"  name='direccion'/>
           <button  type="submit">Registrarse</button>
           <button onClick={handleGoogleLogin}>
           <span className='icon'>
@@ -48,9 +64,7 @@ const Register = () => {
             </span>
             Registrarse con Google
           </button>
-          <NavLink to={'/user_login'}>
-            <button >Regresar</button>
-          </NavLink>
+          <button onClick={() => navigate(-1)} >&larr;</button>
 
         </form>
       );

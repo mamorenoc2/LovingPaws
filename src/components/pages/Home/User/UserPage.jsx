@@ -17,12 +17,12 @@ const UserPage = () => {
         <div className="login-page">
             <div className='login-page-content'>
             <h2>Hola!</h2>
-                <NavLink to={'login'}>
-                    <button onClick={() => console.log('Login')}>Ingresar </button>
+                <NavLink to={'/my_pets'}>
+                    <button>Mis mascotas</button>
                 </NavLink>
-                    <button onClick={handleLogout}>Salir</button>
+                    <button onClick={handleLogout}>cerrar sección</button>
                 <NavLink to={'/home'}>
-                    <button>Regresar</button>
+                    <button>Regresar a mascotas adoptadas</button>
                 </NavLink>
             </div>
         </div>

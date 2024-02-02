@@ -4,7 +4,6 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    
 }
 
 .login-page-content {
@@ -12,9 +11,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 20px 0px;
     align-items: center;
     gap: 20px;
     max-width: 420px;
+    min-width: 280px;
     width: 100%;
     height: 100%;
 }
@@ -27,3 +28,15 @@
     padding: 10px 20px;
     font-size: 1.2em;
 }
+
+.caracteristicas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .description {
+    padding: 0px 50px;
+  }

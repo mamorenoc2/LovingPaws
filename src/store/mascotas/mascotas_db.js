@@ -1,4 +1,4 @@
-import { collection, getDocs, doc, getDoc } from "firebase/firestore";
+import { collection, getDocs, doc, getDoc, updateDoc } from "firebase/firestore";
 import {db} from '../../firebase/firebase'
 
 export async function getData() {
@@ -18,3 +18,9 @@ export async function getPetData(id) {
     return null;
   }
 }
+
+
+export const updatePetData = async (petId, newData) => {
+  const docRef = doc(db, 'mascotas', petId);
+  await updateDoc(docRef, newData);
+};

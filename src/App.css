@@ -5,7 +5,7 @@
   --title-color: #0a1d37;
   --hero-bg: #d6e5fb;
   --heading-fontSize: 2rem;
-  --small-text-color: #999;
+  --small-text-color: #111;
   --heading-text-color: #0a1d37;
   --primary-bg-color: #FEC7D7;
   --secondary-bg-color: #A786DF;
@@ -95,7 +95,8 @@ button {
   color: white;
   border-radius: 98px;
   padding: 10px;
-  width: 150px;
+  max-width: 300px;
+  width: 100%;
 }
 
 button:hover {
@@ -138,7 +139,36 @@ button:hover {
   display: grid;
 }
 
-/* 
+/* Añade estos estilos en tu archivo de estilos CSS, asegúrate de importarlo en tu componente */
+
+.table-container {
+  margin-top: 2rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  border: 10px solid white;
+}
+
+th, td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 3px solid white;
+}
+
+th {
+  background-color: var(--terttiary-bg-color);
+}
+
+td {
+  background-color: var(--primary-bg-color);
+}
+
+
+
+
 @media (min-width: 768px) {
   .header {
     max-width: 1400px;
@@ -159,12 +189,6 @@ button:hover {
     border-radius: 98px;
     margin-top: 10px;
     height: 80%;
-  }
-
-  .homeb {
-  }
-
-  .icon-container {
   }
   .desk-header {
     display:inline;
@@ -191,4 +215,13 @@ button:hover {
       grid-template-columns: repeat(4, 1fr);
   }
 
-} */
+  .landing, .petDescription {
+    margin-top: 5.5rem;
+  }
+
+  .create_pet_container, .edit_pet_container {
+    margin-top: 10rem;
+    margin-bottom: 1.5rem;
+  }
+
+}

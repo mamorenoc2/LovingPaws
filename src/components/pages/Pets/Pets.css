@@ -10,15 +10,19 @@
     max-width: 420px; 
     min-width: 280px;
     margin-bottom: 60px;
+    background-color: var(--primary-bg-color);
 }
 .title {
     font-weight: 800;
-    margin: 50px;
+    margin: 20px;
 }
 
 .subtitle {
     text-align: center;
     margin: 20px;
+}
+h1 {
+    color: var(--title-color);
 }
 
 
@@ -59,10 +63,10 @@
     opacity: 50%;
   }
 
-.pets__panel {
+.pets__panel, .pets_favorites {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: .5em;
     padding: 10px;
     justify-items: center;
 }
@@ -144,3 +148,16 @@
     border-radius: 8px;
 }
 
+.adoptar-btn.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 400px;
+    width: 100%;
+    background-color: aqua;
+    color: blue;
+}
+
+.adoptar-btn {
+    text-align: center;
+}

@@ -1,8 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'
+import {  useNavigate } from 'react-router-dom';
 import './Login.css'
 
 const UserLoginPage = () => {
+  const navigate = useNavigate();
   return (
     <div className="login-page">
       <div className='login-page-content'>
@@ -12,11 +14,8 @@ const UserLoginPage = () => {
       <NavLink to={'register'}>
       <button onClick={() => console.log('Sign In')}>Registrarse</button>
       </NavLink>
-      <NavLink to={'/home'}>
-        <button>Regresar</button>
-      </NavLink>
+      <button onClick={() => navigate(-1)} >&larr;</button>
       </div>
-     
     </div>
   );
 }

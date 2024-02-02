@@ -1,18 +1,36 @@
-import React from 'react'
-import './Home.css'
-import logoPerro from '../../../assets/img/dog-1.jpg'
-import Perro1 from '../../../assets/img/dog-3.jpg'
-import Perro2 from '../../../assets/img/dog-4.jpg'
-import Perro3 from '../../../assets/img/dog-5.jpg'
-import Perro4 from '../../../assets/img/dog-6.jpg'
-import logoGato from '../../../assets/img/dog-2.jpg'
-const Home = () => {
-  return (
-    <div className='home'>
-        <h1 className='title'>Adopta una adorable mascota</h1>
-       
-    </div>
-  )
-}
+import React, { useState, useEffect } from 'react';
+import '../Pets/Pets.css';
+import { NavLink } from 'react-router-dom';
 
-export default Home
+const Home = () => {
+  const [adoptedPets, setAdoptedPets] = useState([]);
+
+  useEffect(() => {
+    const savedPets = localStorage.getItem('adoptedPets');
+    if (savedPets) {
+      setAdoptedPets(JSON.parse(savedPets));
+    }
+  }, []);
+
+  return (
+    <div className='pets_home'>
+      <div className='pets_home-container'>
+        <h1 className='title'>Mascotas Adoptadas</h1>
+        <div className="pets_favorites">
+          {adoptedPets.map((pet, index) => (
+            <div className="pets__panel" key={index}>
+              <NavLink to={`/petsList/petDescription/${pet.id}`}>
+                <div className="pets__card">
+                  <img src={pet.animal_photo} alt="" />
+                  <p className="pet-name">{pet.nombre}</p>
+                </div>
+              </NavLink>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Home;
