@@ -1,5 +1,5 @@
 import React from 'react'
-import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../../firebase/firebase'
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -20,12 +20,29 @@ const Login = () => {
       console.error('Error al iniciar sesión con Google', error.message);
     }
   };
+
+  const handleEmailLogin = (e) => {
+    try {
+      e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    signInWithEmailAndPassword(auth, email, password).then(data=>{
+      console.log(data, 'auth')
+      navigate('/home');
+    });
+    } catch (error) {
+      alert(error)
+      console.error('Error al iniciar sesión', error.message);
+    }
+    
+  }
+
   return (
-    <div className="login-form-page">
-      <h1 className='title'>Ingresa a Pets Lovers</h1>
-      <input type="email" placeholder="Email" />
-      <input type="password" placeholder="Password" />
-      <button onClick={() => console.log('Login')}>Ingresar</button>
+    <form className="login-form-page" onSubmit={(e) => handleEmailLogin(e)}>
+      <h1 className='title'>Ingresa a Loving paws</h1>
+      <input type="email" placeholder="Email" name='email' />
+      <input type="password" placeholder="Password" name='password'/>
+      <button type="submit">Ingresar</button>
       <button onClick={handleGoogleLogin}>
         <span className='icon'>
         <FontAwesomeIcon icon={faGoogle} />
@@ -34,7 +51,7 @@ const Login = () => {
       <NavLink to={'/user_login'}>
         <button>Regresar</button>
       </NavLink>
-    </div>
+    </form>
   );
 }
 
